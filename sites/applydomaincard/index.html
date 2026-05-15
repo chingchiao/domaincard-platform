@@ -1,11 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply Domain Card</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Apply for DomainCard Beta</title>
+
+  <meta
+    name="description"
+    content="Request private beta access to DomainCard, the Slash-powered rewards and expense platform for serious domain investors and enterprise registrants."
+  />
+
+  <style>
+    :root {
+      --bg: #06080d;
+      --panel: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.13);
+      --text: #f8faff;
+      --muted: #aeb7c8;
+      --muted2: #788196;
+      --blue: #91b4ff;
+      --green: #7df0bd;
+      --red: #ff9f9f;
+      --white: #fff;
+      --dark: #06080d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(145,180,255,.24), transparent 34%),
+        radial-gradient(circle at 82% 0%, rgba(125,240,189,.15), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .nav a:hover { color: var(--white); }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 76px 24px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.045);
+      color: var(--green);
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 62px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 22px;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .button:hover {
+      opacity: .9;
+      text-decoration: none;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -0.035em;
+    }
+
+    .panel p {
+      color: var(--muted);
+      margin: 0 0 20px;
+      font-size: 16px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.24);
+      color: var(--white);
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 104px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted2);
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    .section {
+      margin-top: 84px;
+    }
+
+    .section h2 {
+      font-size: 38px;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin: 0 0 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin: 0 0 10px;
+      letter-spacing: -0.025em;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0 0;
+    }
+
+    .checklist li {
+      margin-bottom: 14px;
+      color: var(--muted);
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .footer {
+      margin-top: 90px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted2);
+      font-size: 14px;
+    }
+
+    .footer a { color: var(--muted); text-decoration: none; }
+    .footer a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .split, .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 48px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .container { padding: 56px 20px; }
+      h1 { font-size: 40px; }
+      .lead { font-size: 18px; }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Apply Domain Card</h1>
+  <nav class="nav">
+    <a class="logo" href="/">DomainCard Beta</a>
+    <a href="https://getdomaincard.com">Learn more</a>
+  </nav>
+
+  <main class="container">
+    <section class="split">
+      <div>
+        <div class="badge">Private beta application</div>
+
+        <h1>For serious domain operators.</h1>
+
+        <p class="lead">
+          Request early access to DomainCard — the rewards and expense platform for domain investors,
+          enterprise registrants, agencies, and domain businesses spending across registrars, renewals,
+          auctions, marketplaces, ads, hosting, and SEO tools.
+        </p>
+
+        <a class="button" href="https://domaincard.app/request-beta">
+          Continue to Secure Application
+        </a>
+
+        <ul class="checklist">
+          <li>Built for recurring registrar and renewal spend</li>
+          <li>Virtual card workflows for auctions, ads, SEO, hosting, and domain tools</li>
+          <li>Merchant-specific reward assignment and partner bonus campaigns</li>
+          <li>AI-assisted reward, transaction, and support workflows</li>
+        </ul>
+      </div>
+
+      <aside class="panel">
+        <h2>Beta qualification preview</h2>
+        <p>
+          The secure application will collect these details to help us prioritize early access.
+        </p>
+
+        <div class="field">
+          <label>Primary role</label>
+          <select disabled>
+            <option>Domain investor / portfolio holder</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Estimated domains owned</label>
+          <input disabled placeholder="Example: 100–1,000" />
+        </div>
+
+        <div class="field">
+          <label>Monthly domain spend</label>
+          <input disabled placeholder="Example: $1,000–$25,000+" />
+        </div>
+
+        <div class="field">
+          <label>Monthly ad / growth spend</label>
+          <input disabled placeholder="Example: Google Ads, Meta Ads, SEO tools" />
+        </div>
+
+        <div class="field">
+          <label>Top registrars used</label>
+          <textarea disabled placeholder="Example: GoDaddy, Namecheap, Dynadot, Porkbun, NameSilo"></textarea>
+        </div>
+
+        <a class="button" href="https://domaincard.app/request-beta">
+          Start Application
+        </a>
+
+        <div class="form-note">
+          Form preview only. Application will continue at domaincard.app.
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>Who should apply?</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Domain investors</h3>
+          <p>Portfolio holders managing registrar, renewal, transfer, auction, marketplace, and parking spend.</p>
+        </div>
+
+        <div class="card">
+          <h3>Enterprise registrants</h3>
+          <p>Companies managing brand domains, DNS, hosting, digital identity, and domain protection expenses.</p>
+        </div>
+
+        <div class="card">
+          <h3>Agencies and operators</h3>
+          <p>SEO, lead-gen, affiliate, ad-buying, and domain operations teams that need better spend control.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Why join early?</h2>
+      <p>
+        Early beta users will help shape merchant reward categories, virtual card playbooks,
+        registrar coverage, auction workflows, ad-spend routing, and partner bonus campaigns.
+      </p>
+
+      <a class="button" href="https://domaincard.app/request-beta">
+        Request Beta Access
+      </a>
+    </section>
+
+    <div class="footer">
+      <span>© 2026 DomainCard. A project of Ecstatic Ventures LLC.</span>
+      <span>
+        <a href="mailto:hello@ecstaticventures.com">Contact</a>
+      </span>
+    </div>
+  </main>
 </body>
 </html>
