@@ -1,11 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Domain Card</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DomainCard | Rewards for Domains, Auctions, Renewals and Ads</title>
+
+  <meta
+    name="description"
+    content="DomainCard is a rewards and expense-management platform for domain investors, enterprise registrants, registrars, registries, and digital operators."
+  />
+
+  <style>
+    :root {
+      --bg: #070b12;
+      --card: rgba(255,255,255,0.065);
+      --border: rgba(255,255,255,0.13);
+      --text: #f7f9ff;
+      --muted: #aeb8cf;
+      --muted2: #768198;
+      --blue: #8fb1ff;
+      --green: #82f0bd;
+      --gold: #ffd36a;
+      --white: #ffffff;
+      --dark: #070b12;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(84,120,255,.26), transparent 34%),
+        radial-gradient(circle at 88% 10%, rgba(30,220,153,.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255,211,106,.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.16);
+      color: var(--white) !important;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .hero {
+      max-width: 980px;
+      padding-top: 34px;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(255,255,255,.045);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 72px;
+      line-height: .98;
+      letter-spacing: -0.065em;
+      max-width: 1080px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--white), var(--blue), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead {
+      font-size: 23px;
+      color: var(--muted);
+      max-width: 850px;
+      margin-bottom: 34px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--dark);
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid var(--white);
+    }
+
+    .button:hover {
+      opacity: .9;
+      text-decoration: none;
+    }
+
+    .button-secondary {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: var(--white);
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.07);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.11);
+      text-decoration: none;
+    }
+
+    .proof-strip {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .proof {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .proof strong {
+      display: block;
+      font-size: 24px;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .proof span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 96px;
+    }
+
+    .section h2 {
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+      margin: 0 0 18px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 19px;
+      max-width: 840px;
+      margin-bottom: 34px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 30px;
+      min-height: 205px;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      background: rgba(143,177,255,.14);
+      border: 1px solid rgba(143,177,255,.22);
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .highlight {
+      padding: 36px;
+      border-radius: 30px;
+      border: 1px solid rgba(130,240,189,.24);
+      background:
+        linear-gradient(135deg, rgba(143,177,255,.14), rgba(130,240,189,.09)),
+        rgba(255,255,255,.055);
+    }
+
+    .route {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .step {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .step b {
+      color: var(--green);
+      font-size: 13px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .footer {
+      margin-top: 90px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted2);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      h1 { font-size: 52px; }
+      .grid-3, .grid-2, .proof-strip, .route {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .container { padding: 56px 20px; }
+      h1 { font-size: 42px; }
+      .lead { font-size: 18px; }
+      .section { margin-top: 70px; }
+      .section h2 { font-size: 34px; }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Get Domain Card</h1>
+  <nav class="nav">
+    <a class="logo" href="/">DomainCard</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#partners">Partners</a>
+      <a class="nav-cta" href="https://domaincard.app/request-beta">Request Beta Access</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="badge">Private beta opening soon</div>
+
+      <h1>
+        Earn more back on
+        <span class="gradient">domains, renewals, auctions and ads.</span>
+      </h1>
+
+      <p class="lead">
+        DomainCard is the rewards and expense-management platform built for the domain economy —
+        helping domain investors, enterprise registrants, and digital operators organize spend,
+        use virtual cards, and unlock merchant-specific rewards.
+      </p>
+
+      <div class="cta-row">
+        <a class="button" href="https://domaincard.app/request-beta">Request Beta Access</a>
+        <a class="button-secondary" href="mailto:hello@ecstaticventures.com?subject=DomainCard%20Partner%20Inquiry">
+          Partner With DomainCard
+        </a>
+      </div>
+
+      <div class="proof-strip">
+        <div class="proof">
+          <strong>2%+</strong>
+          <span>Target reward experience on eligible domain-economy spend</span>
+        </div>
+        <div class="proof">
+          <strong>Virtual</strong>
+          <span>Cards for registrars, auctions, ads, hosting, and SEO tools</span>
+        </div>
+        <div class="proof">
+          <strong>AI</strong>
+          <span>Assisted reward, merchant, and transaction intelligence</span>
+        </div>
+        <div class="proof">
+          <strong>Partners</strong>
+          <span>Registrar and registry-funded cashback campaigns</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlight">
+      <h2>Domainers spend like businesses. Their cards should understand domains.</h2>
+      <p class="section-intro">
+        Serious domain operators do not just buy domains. They pay for renewals, auctions,
+        premium names, parking, SEO tools, hosting, DNS, escrow, and online ads. DomainCard
+        is designed to make that spend more organized, measurable, and rewarding.
+      </p>
+    </section>
+
+    <section id="how" class="section">
+      <h2>How DomainCard works</h2>
+      <p class="section-intro">
+        DomainCard combines virtual card workflows, merchant labeling, rewards assignment,
+        and partner campaigns into one operating layer for domain-related spend.
+      </p>
+
+      <div class="route">
+        <div class="step">
+          <b>01</b>
+          <h3>Apply</h3>
+          <p>Join the private beta as a domainer, enterprise registrant, agency, or partner.</p>
+        </div>
+        <div class="step">
+          <b>02</b>
+          <h3>Create cards</h3>
+          <p>Use dedicated virtual cards for registrars, auctions, ads, hosting, and tools.</p>
+        </div>
+        <div class="step">
+          <b>03</b>
+          <h3>Pay merchants</h3>
+          <p>Route domain-economy transactions through your DomainCard workflow.</p>
+        </div>
+        <div class="step">
+          <b>04</b>
+          <h3>Label spend</h3>
+          <p>Transactions are mapped to registrars, marketplaces, ads, SEO, hosting, and more.</p>
+        </div>
+        <div class="step">
+          <b>05</b>
+          <h3>Earn rewards</h3>
+          <p>Eligible transactions receive assigned rewards and partner-funded bonus campaigns.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rewards" class="section">
+      <h2>Built for the transactions domainers actually make</h2>
+      <p class="section-intro">
+        DomainCard is being designed around the real payment behavior of domain investors and digital operators.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">D</div>
+          <h3>Domains & Renewals</h3>
+          <p>Organize spend at registrars and earn eligible rewards on registrations, renewals, and transfers.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">A</div>
+          <h3>Auctions & Marketplaces</h3>
+          <p>Track auction, backorder, marketplace, and premium domain spend with purpose-built card workflows.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">G</div>
+          <h3>Ads & Growth</h3>
+          <p>Separate Google, Meta, Microsoft, Reddit, and other traffic acquisition spend from registrar expenses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What the platform includes</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Domain merchant graph</h3>
+          <p>Merchant labeling for registrars, registries, marketplaces, auctions, SEO tools, ad platforms, parking, DNS, hosting, and escrow providers.</p>
+        </div>
+
+        <div class="card">
+          <h3>Reward assignment layer</h3>
+          <p>Configurable reward rules by merchant, category, campaign, partner, and user segment.</p>
+        </div>
+
+        <div class="card">
+          <h3>Virtual card playbooks</h3>
+          <p>Recommended card setups for renewals, auctions, ad buying, SEO tools, hosting, parking, and enterprise operations.</p>
+        </div>
+
+        <div class="card">
+          <h3>AI assistance</h3>
+          <p>AI support for reward questions, merchant classification, support triage, campaign analysis, and manager workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners" class="section highlight">
+      <h2>A new cashback channel for registrars and registries</h2>
+      <p class="section-intro">
+        DomainCard is designed to help registrars, registries, and domain platforms launch targeted
+        rewards campaigns for renewals, transfers, premium names, auctions, and high-value customer acquisition.
+      </p>
+
+      <div class="cta-row">
+        <a class="button" href="mailto:hello@ecstaticventures.com?subject=DomainCard%20Partner%20Campaign">
+          Discuss Partner Campaigns
+        </a>
+        <a class="button-secondary" href="https://domaincard.app/request-beta">
+          Request Beta Access
+        </a>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span>© 2026 DomainCard. A project of Ecstatic Ventures LLC.</span>
+      <span>
+        <a href="mailto:hello@ecstaticventures.com">Contact</a>
+      </span>
+    </div>
+  </main>
 </body>
 </html>
