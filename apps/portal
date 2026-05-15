@@ -1,9 +1,0 @@
-domaincard-platform/
-  apps/
-    portal/
-      app/
-      lib/
-      package.json
-      next.config.ts
-      tsconfig.json
-      .env.example
